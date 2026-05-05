@@ -1,0 +1,25 @@
+# Render Blueprint – Node.js Backend
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: drowsyguard-server
+    runtime: node
+    region: oregon
+    plan: free
+    rootDir: server
+    buildCommand: npm ci --only=production
+    startCommand: node index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGO_URI
+        sync: false # set manually in Render dashboard
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CLIENT_URL
+        sync: false # set to your Vercel frontend URL
+    healthCheckPath: /health

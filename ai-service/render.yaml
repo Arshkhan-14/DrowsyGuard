@@ -1,0 +1,14 @@
+# Render Blueprint – Python AI Service (Docker)
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: drowsyguard-ai
+    runtime: docker
+    region: oregon
+    plan: starter # free tier doesn't support Docker; starter is $7/mo
+    rootDir: ai-service
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: AI_PORT
+        value: 10000
+    healthCheckPath: /health

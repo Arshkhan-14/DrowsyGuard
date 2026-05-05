@@ -135,5 +135,5 @@ async def websocket_endpoint(websocket: WebSocket, session_id: str):
 
 
 if __name__ == "__main__":
-    port = int(os.getenv("AI_PORT", 8001))
+    port = int(os.getenv("PORT", os.getenv("AI_PORT", 8001)))
     uvicorn.run("main:app", host="0.0.0.0", port=port, reload=False, workers=1)
